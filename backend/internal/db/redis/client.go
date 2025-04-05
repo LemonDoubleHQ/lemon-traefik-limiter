@@ -2,8 +2,8 @@ package redis
 
 import (
 	"context"
-	"lemon-traefik-limiter-backend/internal/api/util"
 	"lemon-traefik-limiter-backend/internal/config"
+	"lemon-traefik-limiter-backend/internal/util"
 	"sync"
 
 	"github.com/redis/go-redis/v9"
