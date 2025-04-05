@@ -1,0 +1,18 @@
+services:
+  redis:
+    image: redis:7.4.2
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data
+    command: redis-server --requirepass redispassword --appendonly yes --appendfsync everysec
+  postgres:
+    image: postgres:16.8
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: rate-limiter
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
