@@ -15,6 +15,7 @@ var (
 type Config struct {
 	Environment string
 	Redis       RedisConfig
+	Postgres    PostgresConfig
 	RateLimit   RateLimitConfig
 }
 
@@ -22,6 +23,13 @@ type RedisConfig struct {
 	Addr     string
 	Password string
 	DB       int
+}
+
+type PostgresConfig struct {
+	Host     string
+	UserName string
+	Password string
+	DBName   string
 }
 
 type RateLimitConfig struct {
@@ -36,6 +44,12 @@ func LoadEnvConfig() error {
 			Addr: getStringEnv("REDIS_ADDR", true),
 			Password: getStringEnv("REDIS_PASSWORD", true),
 			DB : getIntEnv("REDIS_DB", true),
+		},
+		Postgres: PostgresConfig{
+			Host: getStringEnv("POSTGRES_HOST", true),
+			UserName: getStringEnv("POSTGRES_USER_NAME", true),
+			Password: getStringEnv("POSTGRES_PASSWORD", true),
+			DBName: getStringEnv("POSTGRES_DB_NAME", true),
 		},
 		RateLimit: RateLimitConfig{
 			MaxRequestInSecondPerIp: int64(getIntEnv("MAX_REQUEST_IN_SECOND_PER_IP", true)),

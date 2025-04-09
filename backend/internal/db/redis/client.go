@@ -23,6 +23,10 @@ end
 return current
 `
 
+func InitRedis(){
+	GetRedisClient()
+}
+
 func GetRedisClient() *redis.Client {
 	once.Do(func() {
 		clientInstance = redis.NewClient(&redis.Options{
